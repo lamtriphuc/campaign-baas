@@ -1,6 +1,6 @@
-package com.project.backend.repository;
+package com.project.demo.repository;
 
-import com.project.backend.entity.Campaign;
+import com.project.demo.entity.Campaign;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

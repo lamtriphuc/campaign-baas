@@ -1,7 +1,8 @@
-package com.project.backend.controller;
+package com.project.demo.controller;
 
-import com.project.backend.entity.Campaign;
-import com.project.backend.service.CampaignService;
+import com.project.demo.entity.Campaign;
+import com.project.demo.entity.Ticket;
+import com.project.demo.service.CampaignService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -27,5 +28,13 @@ public class CampaignController {
     @GetMapping("/{id}")
     public ResponseEntity<Campaign> getById(@PathVariable Long id) {
         return ResponseEntity.ok(campaignService.getCampaign(id));
+    }
+
+    @PostMapping("/{id}/join")
+    public ResponseEntity<?> joinCampaign(
+            @PathVariable Long id,
+            @RequestParam Long userId) { // Dùng RequestParam tạm để giả lập User ID
+        Ticket ticket = campaignService.joinFlashSale(id, userId);
+        return ResponseEntity.ok(ticket);
     }
 }

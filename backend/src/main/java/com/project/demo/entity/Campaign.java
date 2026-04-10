@@ -1,4 +1,4 @@
-package com.project.backend.entity;
+package com.project.demo.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -30,4 +30,7 @@ public class Campaign {
 
     // Trạng thái: DRAFT, ACTIVE, ENDED
     private String status;
+
+    @Version
+    private Long version;
 }
