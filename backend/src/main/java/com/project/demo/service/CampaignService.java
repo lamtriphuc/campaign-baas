@@ -8,6 +8,9 @@ import com.project.demo.repository.CampaignRepository;
 import com.project.demo.repository.TicketRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.orm.ObjectOptimisticLockingFailureException;
+import org.springframework.retry.annotation.Backoff;
+import org.springframework.retry.annotation.Retryable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -34,6 +37,11 @@ public class CampaignService {
     }
 
     @Transactional
+    @Retryable(
+            retryFor = ObjectOptimisticLockingFailureException.class, // Chỉ thử lại nếu gặp đúng lỗi này
+            maxAttempts = 3,
+            backoff = @Backoff(delay = 100) // Mỗi lần cách nhau 100 mili-giây
+    )
     public Ticket joinFlashSale(Long campaignId, Long userId) {
         // 1. Tìm chiến dịch
         Campaign campaign = campaignRepository.findById(campaignId)

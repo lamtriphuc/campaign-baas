@@ -2,8 +2,10 @@ package com.project.demo;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.retry.annotation.Retryable;
 
 @SpringBootApplication
+@Retryable
 public class BackendApplication {
 
     public static void main(String[] args) {
