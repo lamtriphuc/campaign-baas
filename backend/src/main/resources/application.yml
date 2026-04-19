@@ -1,3 +1,7 @@
+server:
+  port: 8088
+
+
 spring:
   application:
     name: flash-sale-campaign
@@ -15,5 +19,11 @@ spring:
     properties:
       hibernate:
         format_sql: true
-server:
-  port: 8088
+
+  rabbitmq:
+    host: localhost
+    port: 5672
+    stream:
+      username: admin
+      password: admin
+
